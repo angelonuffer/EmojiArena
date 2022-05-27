@@ -5,14 +5,21 @@ gdjs.JogoCode.GDObstaculoObjects1= [];
 gdjs.JogoCode.GDObstaculoObjects2= [];
 gdjs.JogoCode.GDHologramaObjects1= [];
 gdjs.JogoCode.GDHologramaObjects2= [];
+gdjs.JogoCode.GDDesenhosObjects1= [];
+gdjs.JogoCode.GDDesenhosObjects2= [];
 
 gdjs.JogoCode.conditionTrue_0 = {val:false};
 gdjs.JogoCode.condition0IsTrue_0 = {val:false};
 gdjs.JogoCode.condition1IsTrue_0 = {val:false};
+gdjs.JogoCode.condition2IsTrue_0 = {val:false};
+gdjs.JogoCode.conditionTrue_1 = {val:false};
+gdjs.JogoCode.condition0IsTrue_1 = {val:false};
+gdjs.JogoCode.condition1IsTrue_1 = {val:false};
+gdjs.JogoCode.condition2IsTrue_1 = {val:false};
 
 
 gdjs.JogoCode.mapOfGDgdjs_46JogoCode_46GDObstaculoObjects1Objects = Hashtable.newFrom({"Obstaculo": gdjs.JogoCode.GDObstaculoObjects1});
-gdjs.JogoCode.userFunc0x7391e8 = function(runtimeScene) {
+gdjs.JogoCode.userFunc0x736a08 = function(runtimeScene) {
 "use strict";
 const jogador = runtimeScene.getObjects("Jogador")[0]
 const script = document.createElement("script")
@@ -55,7 +62,7 @@ gdjs.JogoCode.eventsList0 = function(runtimeScene) {
 {
 
 
-gdjs.JogoCode.userFunc0x7391e8(runtimeScene);
+gdjs.JogoCode.userFunc0x736a08(runtimeScene);
 
 }
 
@@ -92,6 +99,50 @@ gdjs.JogoCode.eventsList0(runtimeScene);} //End of subevents
 }
 
 
+{
+
+
+gdjs.JogoCode.condition0IsTrue_0.val = false;
+gdjs.JogoCode.condition1IsTrue_0.val = false;
+{
+gdjs.JogoCode.condition0IsTrue_0.val = gdjs.evtTools.input.isMouseButtonPressed(runtimeScene, "Left");
+}if ( gdjs.JogoCode.condition0IsTrue_0.val ) {
+{
+{gdjs.JogoCode.conditionTrue_1 = gdjs.JogoCode.condition1IsTrue_0;
+gdjs.JogoCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7578100);
+}
+}}
+if (gdjs.JogoCode.condition1IsTrue_0.val) {
+{runtimeScene.getVariables().getFromIndex(0).setNumber(gdjs.evtTools.input.getMouseX(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionWidth(runtimeScene) / 2);
+}{runtimeScene.getVariables().getFromIndex(1).setNumber(gdjs.evtTools.input.getMouseY(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionHeight(runtimeScene) / 2);
+}}
+
+}
+
+
+{
+
+
+gdjs.JogoCode.condition0IsTrue_0.val = false;
+{
+gdjs.JogoCode.condition0IsTrue_0.val = gdjs.evtTools.input.isMouseButtonPressed(runtimeScene, "Left");
+}if (gdjs.JogoCode.condition0IsTrue_0.val) {
+gdjs.copyArray(runtimeScene.getObjects("Desenhos"), gdjs.JogoCode.GDDesenhosObjects1);
+gdjs.copyArray(runtimeScene.getObjects("Jogador"), gdjs.JogoCode.GDJogadorObjects1);
+{for(var i = 0, len = gdjs.JogoCode.GDDesenhosObjects1.length ;i < len;++i) {
+    gdjs.JogoCode.GDDesenhosObjects1[i].drawCircle(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(0)), gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(1)), 60);
+}
+}{for(var i = 0, len = gdjs.JogoCode.GDDesenhosObjects1.length ;i < len;++i) {
+    gdjs.JogoCode.GDDesenhosObjects1[i].drawCircle(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(0)) + gdjs.evtTools.common.getXFromAngleAndDistance(gdjs.evtTools.common.angleBetweenPositions(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(0)), gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(1)), gdjs.evtTools.input.getMouseX(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionWidth(runtimeScene) / 2, gdjs.evtTools.input.getMouseY(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionHeight(runtimeScene) / 2), 35), gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(1)) + gdjs.evtTools.common.getYFromAngleAndDistance(gdjs.evtTools.common.angleBetweenPositions(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(0)), gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(1)), gdjs.evtTools.input.getMouseX(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionWidth(runtimeScene) / 2, gdjs.evtTools.input.getMouseY(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionHeight(runtimeScene) / 2), 35), 40);
+}
+}{for(var i = 0, len = gdjs.JogoCode.GDJogadorObjects1.length ;i < len;++i) {
+    gdjs.JogoCode.GDJogadorObjects1[i].getBehavior("TopDownMovement").simulateStick(gdjs.evtTools.common.angleBetweenPositions(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(0)), gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(1)), gdjs.evtTools.input.getMouseX(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionWidth(runtimeScene) / 2, gdjs.evtTools.input.getMouseY(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionHeight(runtimeScene) / 2), 1);
+}
+}}
+
+}
+
+
 };
 
 gdjs.JogoCode.func = function(runtimeScene) {
@@ -103,6 +154,8 @@ gdjs.JogoCode.GDObstaculoObjects1.length = 0;
 gdjs.JogoCode.GDObstaculoObjects2.length = 0;
 gdjs.JogoCode.GDHologramaObjects1.length = 0;
 gdjs.JogoCode.GDHologramaObjects2.length = 0;
+gdjs.JogoCode.GDDesenhosObjects1.length = 0;
+gdjs.JogoCode.GDDesenhosObjects2.length = 0;
 
 gdjs.JogoCode.eventsList1(runtimeScene);
 return;

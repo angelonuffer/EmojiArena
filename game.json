@@ -108,7 +108,20 @@
         "windowMask": false
       },
       "objectsGroups": [],
-      "variables": [],
+      "variables": [
+        {
+          "folded": true,
+          "name": "origem_movimento_x",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "folded": true,
+          "name": "origem_movimento_y",
+          "type": "number",
+          "value": 0
+        }
+      ],
       "instances": [
         {
           "angle": 0,
@@ -170,6 +183,22 @@
               "value": 0
             }
           ],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Interface",
+          "locked": false,
+          "name": "Desenhos",
+          "persistentUuid": "7e8a7e3b-1ea7-4968-80e3-277bb491b209",
+          "width": 0,
+          "x": 453,
+          "y": 278,
+          "zOrder": 4,
+          "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
         }
@@ -310,6 +339,29 @@
               ]
             }
           ]
+        },
+        {
+          "name": "Desenhos",
+          "tags": "",
+          "type": "PrimitiveDrawing::Drawer",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "fillOpacity": 0,
+          "outlineSize": 12,
+          "outlineOpacity": 64,
+          "fillColor": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          },
+          "outlineColor": {
+            "b": 255,
+            "g": 0,
+            "r": 0
+          },
+          "absoluteCoordinates": true,
+          "clearBetweenFrames": true
         }
       ],
       "events": [
@@ -370,6 +422,115 @@
               "eventsSheetExpanded": false
             }
           ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MouseButtonPressed"
+              },
+              "parameters": [
+                "",
+                "Left"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "origem_movimento_x",
+                "=",
+                "MouseX()-CameraX()+SceneWindowWidth()/2"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "origem_movimento_y",
+                "=",
+                "MouseY()-CameraY()+SceneWindowHeight()/2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MouseButtonPressed"
+              },
+              "parameters": [
+                "",
+                "Left"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PrimitiveDrawing::Circle"
+              },
+              "parameters": [
+                "Desenhos",
+                "Variable(origem_movimento_x)",
+                "Variable(origem_movimento_y)",
+                "60"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "PrimitiveDrawing::Circle"
+              },
+              "parameters": [
+                "Desenhos",
+                "Variable(origem_movimento_x)+XFromAngleAndDistance(AngleBetweenPositions(Variable(origem_movimento_x), Variable(origem_movimento_y), MouseX()-CameraX()+SceneWindowWidth()/2, MouseY()-CameraY()+SceneWindowHeight()/2), 35)",
+                "Variable(origem_movimento_y)+YFromAngleAndDistance(AngleBetweenPositions(Variable(origem_movimento_x), Variable(origem_movimento_y), MouseX()-CameraX()+SceneWindowWidth()/2, MouseY()-CameraY()+SceneWindowHeight()/2), 35)",
+                "40"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "TopDownMovementBehavior::SimulateStick"
+              },
+              "parameters": [
+                "Jogador",
+                "TopDownMovement",
+                "AngleBetweenPositions(Variable(origem_movimento_x), Variable(origem_movimento_y), MouseX()-CameraX()+SceneWindowWidth()/2, MouseY()-CameraY()+SceneWindowHeight()/2)",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "layers": [
@@ -393,6 +554,17 @@
               "width": 0
             }
           ],
+          "effects": []
+        },
+        {
+          "ambientLightColorB": 7383992,
+          "ambientLightColorG": 6040208,
+          "ambientLightColorR": 7428080,
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "name": "Interface",
+          "visibility": true,
+          "cameras": [],
           "effects": []
         }
       ],
