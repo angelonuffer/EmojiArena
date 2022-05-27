@@ -22,7 +22,7 @@
     "author": "Ângelo Nuffer",
     "windowWidth": 1260,
     "windowHeight": 720,
-    "latestCompilationDirectory": "/home/angelonuffer/Documentos/GDevelop projects/Emoji Arena/www",
+    "latestCompilationDirectory": "/home/angelo/Documentos/GitHub/EmojiArena/www",
     "maxFPS": 60,
     "minFPS": 20,
     "verticalSync": false,
@@ -82,18 +82,18 @@
   "variables": [],
   "layouts": [
     {
-      "b": 209,
+      "b": 121,
       "disableInputWhenNotFocused": true,
-      "mangledName": "Cena_32sem_32t_237tulo",
-      "name": "Cena sem título",
+      "mangledName": "Jogo",
+      "name": "Jogo",
       "oglFOV": 90,
       "oglZFar": 500,
       "oglZNear": 1,
-      "r": 209,
+      "r": 243,
       "standardSortMethod": true,
       "stopSoundsOnStartup": true,
       "title": "",
-      "v": 209,
+      "v": 169,
       "uiSettings": {
         "grid": false,
         "gridType": "rectangular",
@@ -143,6 +143,27 @@
           "x": 597,
           "y": 141,
           "zOrder": 2,
+          "numberProperties": [
+            {
+              "name": "animation",
+              "value": 0
+            }
+          ],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 64,
+          "layer": "",
+          "locked": false,
+          "name": "Obstaculo",
+          "persistentUuid": "32795a36-9bf1-4327-a188-bc6c18cec6a8",
+          "width": 64,
+          "x": 248,
+          "y": 363,
+          "zOrder": 3,
           "numberProperties": [
             {
               "name": "animation",
@@ -249,6 +270,46 @@
               ]
             }
           ]
+        },
+        {
+          "name": "Holograma",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "Sorriso",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "Emojis/1F642_color.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ],
       "events": [
@@ -284,6 +345,31 @@
             }
           ],
           "events": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "const jogador = runtimeScene.getObjects(\"Jogador\")[0]\nconst script = document.createElement(\"script\")\nscript.type = \"text/javascript\"\nscript.src = \"https://cdn.jsdelivr.net/gh/subins2000/p2pt/dist/p2pt.umd.min.js\"\nscript.onload = e => {\n    var p2pt = new P2PT([\n        \"wss://tracker.openwebtorrent.com\",\n        \"wss://tracker.btorrent.xyz\",\n        \"wss://tracker.fastcast.nz\",\n        \"wss://tracker.sloppyta.co:443/announce\",\n        \"wss://tracker.novage.com.ua:443/announce\",\n        \"wss://tracker.btorrent.xyz:443/announce\",\n    ], \"Emoji Arena\")\n    const peers = []\n    p2pt.on(\"peerconnect\", (peer) => {\n        peers.push(peer)\n        peer.objeto = runtimeScene.createObject(\"Holograma\")\n        peer.objeto.setX(191)\n        peer.objeto.setY(99)\n        peer.objeto.setWidth(64)\n        peer.objeto.setHeight(64)\n    })\n    p2pt.on(\"msg\", (peer, mensagem) => {\n        const nova_posição = JSON.parse(mensagem)\n        peer.objeto.setX(nova_posição[0])\n        peer.objeto.setY(nova_posição[1])\n    })\n    p2pt.start()\n    setInterval(() => {\n        peers.forEach(peer => {\n            p2pt.send(peer, JSON.stringify([jogador.getX(), jogador.getY()]))\n        })\n    })\n}\ndocument.head.appendChild(script)",
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ]
         }
       ],
       "layers": [
