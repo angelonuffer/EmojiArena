@@ -19,7 +19,7 @@ gdjs.JogoCode.condition2IsTrue_1 = {val:false};
 
 
 gdjs.JogoCode.mapOfGDgdjs_46JogoCode_46GDObstaculoObjects1Objects = Hashtable.newFrom({"Obstaculo": gdjs.JogoCode.GDObstaculoObjects1});
-gdjs.JogoCode.userFunc0x736a08 = function(runtimeScene) {
+gdjs.JogoCode.userFunc0x7d7f00 = function(runtimeScene) {
 "use strict";
 const jogador = runtimeScene.getObjects("Jogador")[0]
 const script = document.createElement("script")
@@ -62,7 +62,7 @@ gdjs.JogoCode.eventsList0 = function(runtimeScene) {
 {
 
 
-gdjs.JogoCode.userFunc0x736a08(runtimeScene);
+gdjs.JogoCode.userFunc0x7d7f00(runtimeScene);
 
 }
 
@@ -109,7 +109,7 @@ gdjs.JogoCode.condition0IsTrue_0.val = gdjs.evtTools.input.isMouseButtonPressed(
 }if ( gdjs.JogoCode.condition0IsTrue_0.val ) {
 {
 {gdjs.JogoCode.conditionTrue_1 = gdjs.JogoCode.condition1IsTrue_0;
-gdjs.JogoCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7578100);
+gdjs.JogoCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(7432596);
 }
 }}
 if (gdjs.JogoCode.condition1IsTrue_0.val) {
@@ -137,6 +137,22 @@ gdjs.copyArray(runtimeScene.getObjects("Jogador"), gdjs.JogoCode.GDJogadorObject
 }
 }{for(var i = 0, len = gdjs.JogoCode.GDJogadorObjects1.length ;i < len;++i) {
     gdjs.JogoCode.GDJogadorObjects1[i].getBehavior("TopDownMovement").simulateStick(gdjs.evtTools.common.angleBetweenPositions(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(0)), gdjs.evtTools.variable.getVariableNumber(runtimeScene.getVariables().getFromIndex(1)), gdjs.evtTools.input.getMouseX(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionWidth(runtimeScene) / 2, gdjs.evtTools.input.getMouseY(runtimeScene, "", 0) - gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0) + gdjs.evtTools.window.getGameResolutionHeight(runtimeScene) / 2), 1);
+}
+}}
+
+}
+
+
+{
+
+
+gdjs.JogoCode.condition0IsTrue_0.val = false;
+{
+gdjs.JogoCode.condition0IsTrue_0.val = gdjs.evtsExt__Gamepads__C_Axis_pushed.func(runtimeScene, 1, "Left", "Any", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined));
+}if (gdjs.JogoCode.condition0IsTrue_0.val) {
+gdjs.copyArray(runtimeScene.getObjects("Jogador"), gdjs.JogoCode.GDJogadorObjects1);
+{for(var i = 0, len = gdjs.JogoCode.GDJogadorObjects1.length ;i < len;++i) {
+    gdjs.JogoCode.GDJogadorObjects1[i].getBehavior("TopDownMovement").simulateStick(gdjs.evtTools.common.angleBetweenPositions(0, 0, gdjs.evtsExt__Gamepads__AxisValue.func(runtimeScene, 1, "Left", "Horizontal", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined)), gdjs.evtsExt__Gamepads__AxisValue.func(runtimeScene, 1, "Left", "Vertical", (typeof eventsFunctionContext !== 'undefined' ? eventsFunctionContext : undefined))), 1);
 }
 }}
 
