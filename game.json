@@ -192,12 +192,28 @@
           "height": 0,
           "layer": "Interface",
           "locked": false,
-          "name": "Desenhos",
+          "name": "DesenhoContornoAzul",
           "persistentUuid": "7e8a7e3b-1ea7-4968-80e3-277bb491b209",
           "width": 0,
           "x": 453,
           "y": 278,
           "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "DesenhoBranco",
+          "persistentUuid": "f16569c3-9af8-444f-91ab-0e8933a60d38",
+          "width": 0,
+          "x": 675,
+          "y": 423,
+          "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -341,7 +357,7 @@
           ]
         },
         {
-          "name": "Desenhos",
+          "name": "DesenhoContornoAzul",
           "tags": "",
           "type": "PrimitiveDrawing::Drawer",
           "variables": [],
@@ -359,6 +375,29 @@
             "b": 255,
             "g": 0,
             "r": 0
+          },
+          "absoluteCoordinates": true,
+          "clearBetweenFrames": true
+        },
+        {
+          "name": "DesenhoBranco",
+          "tags": "",
+          "type": "PrimitiveDrawing::Drawer",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "fillOpacity": 128,
+          "outlineSize": 0,
+          "outlineOpacity": 128,
+          "fillColor": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          },
+          "outlineColor": {
+            "b": 255,
+            "g": 255,
+            "r": 255
           },
           "absoluteCoordinates": true,
           "clearBetweenFrames": true
@@ -496,7 +535,7 @@
                 "value": "PrimitiveDrawing::Circle"
               },
               "parameters": [
-                "Desenhos",
+                "DesenhoContornoAzul",
                 "Variable(origem_movimento_x)",
                 "Variable(origem_movimento_y)",
                 "60"
@@ -509,7 +548,7 @@
                 "value": "PrimitiveDrawing::Circle"
               },
               "parameters": [
-                "Desenhos",
+                "DesenhoContornoAzul",
                 "Variable(origem_movimento_x)+XFromAngleAndDistance(AngleBetweenPositions(Variable(origem_movimento_x), Variable(origem_movimento_y), MouseX()-CameraX()+SceneWindowWidth()/2, MouseY()-CameraY()+SceneWindowHeight()/2), 35)",
                 "Variable(origem_movimento_y)+YFromAngleAndDistance(AngleBetweenPositions(Variable(origem_movimento_x), Variable(origem_movimento_y), MouseX()-CameraX()+SceneWindowWidth()/2, MouseY()-CameraY()+SceneWindowHeight()/2), 35)",
                 "40"
@@ -561,6 +600,43 @@
                 "TopDownMovement",
                 "AngleBetweenPositions(0, 0, Gamepads::AxisValue(1, \"Left\", \"Horizontal\"), Gamepads::AxisValue(1, \"Left\", \"Vertical\"))",
                 "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Gamepads::C_Axis_pushed"
+              },
+              "parameters": [
+                "",
+                "1",
+                "\"Right\"",
+                "\"Any\"",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PrimitiveDrawing::LineV2"
+              },
+              "parameters": [
+                "DesenhoBranco",
+                "cos(ToRad(Gamepads::StickRotationValue(1, \"Right\"))) * 30 + Jogador.CenterX()",
+                "sin(ToRad(Gamepads::StickRotationValue(1, \"Right\"))) * 30 + Jogador.CenterY()",
+                "cos(ToRad(Gamepads::StickRotationValue(1, \"Right\"))) * 200 + Jogador.CenterX()",
+                "sin(ToRad(Gamepads::StickRotationValue(1, \"Right\"))) * 200 + Jogador.CenterY()",
+                "20"
               ],
               "subInstructions": []
             }
